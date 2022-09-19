@@ -36,10 +36,6 @@ kotlin {
                 //Ktor Core
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
 
-                //Kotlin
-                implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10")
-                implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
-
                 //Kotlin Serialization
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
