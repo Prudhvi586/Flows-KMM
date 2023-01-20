@@ -2,7 +2,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
-    kotlin("plugin.serialization")
+    kotlin("plugin.serialization") version "1.7.10"
     id("kotlin-parcelize")
 }
 
@@ -24,8 +24,7 @@ kotlin {
     }
     
     sourceSets {
-        val ktorVersion = "1.6.8"
-        val serializationVersion = "1.4.0"
+        val ktorVersion = "2.2.2"
         val coroutinesVersion = "1.6.4"
 
         val commonMain by getting {
@@ -37,8 +36,8 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
 
                 //Kotlin Serialization
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
-                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
                 //Ktor logging
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
@@ -56,7 +55,6 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 //Ktor Android
-                implementation("io.ktor:ktor-client-android:$ktorVersion")
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
             }
         }
@@ -71,7 +69,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 //Ktor iOS
-                implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
             }
         }
         val iosX64Test by getting
@@ -88,10 +86,10 @@ kotlin {
 
 android {
     namespace = "com.pru.appleapp"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
     }
 }
 
